@@ -1,25 +1,43 @@
 package ar.edu.unahur.obj2;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.lang.*;
 
 public class MeteoData {
 
     private final EstacionMeteorologica estacionMeteorologica;
+    private final List<Display> displayList;
 
     public MeteoData(EstacionMeteorologica estacionMeteorologica) {
         this.estacionMeteorologica = estacionMeteorologica;
+        this.displayList = new ArrayList<>();
     }
 
-    public double getHumedad() {
-        return new Random().nextDouble();
+    public void agregarDisplay(Display display){
+        displayList.add(display);
     }
 
-    public double getTemperatura() {
-        return new Random().nextDouble();
+    public void eliminarDisplay(Display display){
+        displayList.remove(display);
     }
 
-    public double getPresion() {
-        return new Random().nextDouble();
+
+    public EstacionMeteorologica getEstacionMeteorologica() {
+        return estacionMeteorologica;
+    }
+
+    public double getHumedad(){
+        return getEstacionMeteorologica().getHumedadService().getHumedad();
+    }
+
+    public double getTemperatura(){
+        return getEstacionMeteorologica().getTemperaturaService().getTemperatura();
+    }
+
+    public double getPresion(){
+        return getEstacionMeteorologica().getPresionService().getPresion();
     }
 
     /**
@@ -28,6 +46,11 @@ public class MeteoData {
      * informacionActualizada
      */
     public void informaciónActualizada() {
+        displayList.stream().forEach( display -> display.actualizarDatos(getTemperatura(), getPresion(), getHumedad()));
+    }
+
+    public void situacionActual(){
+        displayList.stream().forEach(display -> System.out.println(display.toString()));
 
     }
 }

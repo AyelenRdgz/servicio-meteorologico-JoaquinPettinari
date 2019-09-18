@@ -12,5 +12,15 @@ public class EstacionMeteorologica {
         this.temperaturaService = temperaturaService;
     }
 
+    public HumedadService getHumedadService() {
+        return humedadService;
+    }
 
+    public PresionService getPresionService() {
+        return presionService;
+    }
+
+    public TemperaturaService getTemperaturaService() {
+        return temperaturaService;
+    }
 }

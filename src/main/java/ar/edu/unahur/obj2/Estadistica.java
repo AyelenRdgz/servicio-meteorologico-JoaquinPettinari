@@ -1,8 +1,6 @@
 package ar.edu.unahur.obj2;
 
-
-
-public class CondicionesActualesDisplay implements Display {
+public class Estadistica implements Display {
     private double temperatura;
     private double humedad;
     private double presion;
